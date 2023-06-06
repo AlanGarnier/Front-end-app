@@ -5,6 +5,7 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import SignInUser from '../views/auth/user/LoginUser';
 import SignUpUser from "../views/auth/user/RegisterUser";
 import MenuCard from "../views/menu/Menu";
+import OrderF from '../views/order/Order';
 
 // Liste des route
 // eslint-disable-next-line require-jsdoc
@@ -16,6 +17,7 @@ function Routing() {
           <Route path="/connexion" element={<SignInUser />} />
           <Route path="/register" element={<SignUpUser />} />
           <Route path="/menu" element={<MenuCard />} />
+          <Route path="/order" element={<OrderF />} />
       </Routes>
     </BrowserRouter>
   );
