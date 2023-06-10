@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, Form, Formik } from 'formik'
 // import LockOpenIcon from '@mui/icons-material/LockOpen'
-import { Button } from '@mui/material'
+import { Button, InputLabel } from '@mui/material'
 import { TextField } from 'formik-mui'
 import { H1, Container, AuthForm, Span, RelativeParentContainer } from "./styles"
 import * as Yup from 'yup'
@@ -33,6 +33,7 @@ const loginForm = () => {
               <div className="form-container">
                 <div className="login-form">
                   <RelativeParentContainer>
+                    <InputLabel htmlFor="login">Login</InputLabel>
                     <Field
                         placeholder="test"
 
@@ -47,6 +48,7 @@ const loginForm = () => {
                   </RelativeParentContainer>
 
                   <RelativeParentContainer className="mt3">
+                    <InputLabel htmlFor="password">Mot de passe</InputLabel>
                     <Field
                         name="password"
                         type="password"

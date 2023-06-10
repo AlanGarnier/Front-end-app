@@ -4,14 +4,14 @@ import * as React from 'react';
 
 export default function navbar() {
         return(
-            <nav className="navbar navbar-expand-lg header-nav">
-                <div className="container-fluid justify-content-center">
-                    <div className="logo">
-                        <a className="navbar-brand" href="#">
-                            <img src="http://localhost:3000/images/LUNCH.png" alt="Logo" width="70px" height="70px" className="d-inline-block align-text-top"/>
+            <nav className="navbar navbar-expand-lg header-nav row">
+                <div className="container-fluid">
+                    <div className="logo col-1">
+                        <a className="mx-3" href="#">
+                            <img src="http://localhost:3000/images/LUNCH.png" alt="Logo" width="70px" height="70px"/>
                         </a>
                     </div>
-                    <div className="collapse navbar-collapse header-link text-center">
+                    <div className="align-content-center col-8">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="/home">Accueil</a>
