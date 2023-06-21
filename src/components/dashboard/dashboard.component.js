@@ -17,12 +17,15 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, adminListItems } from './listMenu';
+import { mainListItems, adminListItems } from './listMenu.component';
 import {useLocation} from "react-router-dom";
 import {useEffect} from "react";
 //import Chart from './Chart';
 //import Deposits from './Deposits';
 //import Orders from './Orders';
+
+import MenuForm from "./admin/menuForm.component";
+import OrderForm from "../order.component";
 
 function Copyright(props) {
     return (
@@ -97,16 +100,18 @@ export default function Dashboard(effect, deps) {
     const location = useLocation();
     console.log(location.pathname);
 
-    /*const [ sideMenu, setSideMenu] = React.useState(<mainListItems/>);
+    let content;
 
-    useEffect(() => {
-        if (location.pathname === '/dashboard')
-        {
-             setSideMenu(<mainListItems/>);
-        }
-    })*/
+    if (location.pathname === '/dashboard/order')
+    {
+        content = OrderForm;
+    }
+    else if (location.pathname === '/dashboard/')
+    {
+        content = MenuForm();
+    }
 
-    console.log(sideMenu);
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
@@ -161,22 +166,37 @@ export default function Dashboard(effect, deps) {
                     </Toolbar>
                     <Divider />
                     <List component="nav" >
-                        {/*{sideMenu}*/}
-                        {/*<Divider sx={{ my: 1 }} />*/}
-                        {/*{secondaryListItems}*/}
+                        {mainListItems}
                     </List>
                 </Drawer>
                 <Box
                     component="main"
                     sx={{
-                            // backgroundColor: '#eae7dc',
-                            flexGrow: 1,
-                            height: '100vh',
-                            overflow: 'auto',
-                        }}
+                        // backgroundColor: '#eae7dc',
+                        flexGrow: 1,
+                        height: '100vh',
+                        overflow: 'auto',
+                    }}
                 >
                     <Toolbar />
-                   {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+
+                    <Container  sx={{ mt: 4, mb: 4 }}>
+                        <Grid container spacin={2}>
+                            <Grid item xs={5} md={5} lg={5}>
+                                <Paper sx={{
+                                    p: 2,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    //flexDirection: 'column',
+                                    //height: 240,
+                                }}>
+                                    { content }
+                                </Paper>
+
+                            </Grid>
+                        </Grid>
+                    </Container>
+                    {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
                              Chart
                             <Grid item xs={12} md={8} lg={9}>

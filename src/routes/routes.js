@@ -6,8 +6,8 @@ import SignInUser from '../views/auth/user/LoginUser';
 import SignUpUser from "../views/auth/user/RegisterUser";
 import MenuCard from "../views/menu/Menu";
 import OrderF from '../views/order/Order';
-import UserDashboard from '../views/dashboard/user/home';
-import AddMenu from "../views/dashboard/user/menuForm";
+import MainDashboard from '../views/dashboard/dashbord';
+import AdminDashboard from "../views/dashboard/adminDashboard";
 
 // Liste des route
 // eslint-disable-next-line require-jsdoc
@@ -20,8 +20,9 @@ function Routing() {
           <Route path="/register" element={<SignUpUser />} />
           <Route path="/menu" element={<MenuCard />} />
           <Route path="/order" element={<OrderF />} />
-          <Route path="/dashboard" element={<UserDashboard/>}/>
-          <Route path="/dashboard/menu" element={<AddMenu/>}/>
+          <Route path="/dashboard" element={<MainDashboard/>}/>
+          <Route path="/dashboard/admin" element={<AdminDashboard/>}/>
+          <Route path="/dashboard/admin/order" element={<AdminDashboard/>}/>
       </Routes>
     </BrowserRouter>
   );

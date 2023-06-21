@@ -6,13 +6,15 @@ import { TextField } from 'formik-mui'
 import { H1, Container, AuthForm, Span, RelativeParentContainer } from "./styles"
 import * as Yup from 'yup'
 import './style.css'
-// import { signin } from '../../../services/auth'
+import { signin } from '../../services/auth/singin.service';
 
 const loginSchema = Yup.object().shape({
   login: Yup.string()
-      // .email('Adresse email invalide')
-      .required('Champ requis'),
-  password: Yup.string().required('Le mot de passe est requis'),
+      .email('Adresse email invalide')
+      .required('Le login est requis'),
+  password: Yup.string()
+      .min(8,'Le mot de passe doit contenir 8 caratères minimum')
+      .required('Le mot de passe est requis'),
 })
 
 const loginForm = () => {
@@ -21,7 +23,7 @@ const loginForm = () => {
           initialValues={{ login: '', password: '' }}
           validationSchema={loginSchema}
           onSubmit={(values, { resetForm }) => {
-            // signin(values.login, values.password)
+             signin(values.login, values.password)
             resetForm()
           }}
       >
@@ -29,14 +31,12 @@ const loginForm = () => {
           <AuthForm className="page-login">
             <H1>Connexion</H1>
             <Form>
-
               <div className="form-container">
                 <div className="login-form">
                   <RelativeParentContainer>
                     <InputLabel htmlFor="login">Login</InputLabel>
                     <Field
                         placeholder="test"
-
                         name="login"
                         type="text"
                         label="Login"

@@ -1,29 +1,12 @@
-import http from "../http-common";
+import axios from 'axios';
 
-class CommandDataService {
-    getAll() {
-        return http.get("/commands");
-    }
 
-    get(id) {
-        return http.get(`/command/${id}`);
-    }
+const setOrder = (entree, plat, dessert)  => {
+    return axios.post('', {entree, plat, dessert}).then((response) => {
+        window.location.href = "/dashboard";
+    }).catch((error) => {
+        console.log(error);
+    });
+};
 
-    create(data) {
-        return http.post("/commands", data);
-    }
-
-    update(id, data) {
-        return http.put(`/command/${id}`, data);
-    }
-
-    delete(id) {
-        return http.delete(`/command/${id}`);
-    }
-
-    findById(id) {
-        return http.get(`/commands?id=${id}`);
-    }
-}
-
-export default new CommandDataService();
+export { setOrder };

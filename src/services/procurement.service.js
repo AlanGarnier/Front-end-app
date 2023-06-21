@@ -1,4 +1,15 @@
-import http from "../http-common";
+import axios from 'axios';
+
+
+const editAmount = (amount, type, user)  => {
+    return axios.post('', {amount, type, user}).then((response) => {
+        window.location.href = "/dashboard/admin";
+    }).catch((error) => {
+        console.log(error);
+    });
+};
+
+export { editAmount };
 
 class ProcurementDataService {
     getAll() {
@@ -26,4 +37,4 @@ class ProcurementDataService {
     }
 }
 
-export default new ProcurementDataService();
+//export default new ProcurementDataService();

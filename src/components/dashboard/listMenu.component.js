@@ -9,6 +9,8 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import SyncAlt from "@mui/icons-material/SyncAlt";
+import MenuBook from "@mui/icons-material/MenuBook";
 
 export const mainListItems = (
     <React.Fragment>
@@ -47,9 +49,6 @@ export const mainListItems = (
 
 export const adminListItems = (
     <React.Fragment>
-        <ListSubheader component="div" inset>
-            Saved reports
-        </ListSubheader>
         <ListItemButton>
             <ListItemIcon>
                 <AssignmentIcon />
@@ -62,9 +61,9 @@ export const adminListItems = (
             </ListItemIcon>
             <ListItemText primary="Les commandes" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton href="/dashboard/admin/order">
             <ListItemIcon>
-                <AssignmentIcon />
+                <MenuBook />
             </ListItemIcon>
             <ListItemText primary="Les menus" />
         </ListItemButton>
@@ -74,9 +73,9 @@ export const adminListItems = (
             </ListItemIcon>
             <ListItemText primary="Les plats" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton href="/dashboard/admin">
             <ListItemIcon>
-                <AssignmentIcon />
+                <SyncAlt />
             </ListItemIcon>
             <ListItemText primary="Créditer/Débiter" />
         </ListItemButton>
