@@ -1,40 +1,18 @@
 import axios from 'axios';
+import {apiUrl} from "../config";
 
-
-const editAmount = (amount, type, user)  => {
-    return axios.post('', {amount, type, user}).then((response) => {
-        window.location.href = "/dashboard/admin";
-    }).catch((error) => {
-        console.log(error);
-    });
+const editAmount = async (amount, type, user)  => {
+    try {
+        return await axios.post(`${apiUrl}procurement`, {amount, type, user})
+                .then((response) => {
+            window.location.href = "/dashboard/admin";
+        })
+    }
+    catch (error) {
+        return error
+    }
 };
 
+
+
 export { editAmount };
-
-class ProcurementDataService {
-    getAll() {
-        return http.get("/procurements");
-    }
-
-    get(id) {
-        return http.get(`/procurement/${id}`);
-    }
-
-    create(data) {
-        return http.post("/procurements", data);
-    }
-
-    update(id, data) {
-        return http.put(`/procurement/${id}`, data);
-    }
-
-    delete(id) {
-        return http.delete(`/procurement/${id}`);
-    }
-
-    findById(id) {
-        return http.get(`/procurements?id=${id}`);
-    }
-}
-
-//export default new ProcurementDataService();

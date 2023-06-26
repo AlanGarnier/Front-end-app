@@ -13,11 +13,16 @@ import {MenuItem} from "@mui/material";
 import Button from "@mui/material/Button";
 import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik'
-import {setOrder} from "../services/command.service";
+
+import {setMenu} from "../services/menu.service";
+
+import { entree, plat, dessert } from "../services/plates.service";
 
 
 const orderSchema = Yup.object().shape({
-    entree: Yup.number()
+    titleMenu: Yup.string()
+        .required('Le nom du menu est requis'),
+    entree: Yup.array()
         .required('L\'entree est requise'),
     plat: Yup.number()
         .required('Le plat est requis'),
@@ -25,19 +30,44 @@ const orderSchema = Yup.object().shape({
         .required('Le dessert est requis'),
 })
 
+
 export default function OrderForm() {
 
+    entree()
+        .then( data => {
+            console.log(data);
+            for (const plate of data )
+            {
+                console.log(plate);
+                console.log(plate['plate_id']);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+/*    for (const plate of plates )
+    {
+        console.log(plate);
+    }*/
+
+
+
     return (
-            <Formik initialValues={{ entree: '', plat: '', dessert: ''}}
+            <Formik initialValues={{ titleMenu: '', entree: '', plat: '', dessert: ''}}
                     validationSchema={orderSchema}
                     onSubmit={(values, { resetForm }) => {
-                        setOrder(values.amount, values.plat, values.dessert)
+                        setMenu(values.titleMenu, values.entree, values.plat, values.dessert)
                         resetForm()
                     }}>
                 <Container>
                     <Form>
                         <h3> Créer menu</h3>
-                        <div className="form-group mt-4 col-5">
+
+                        <div className="form-group mt-4">
+                            <TextField id="outlined-basic" name="titleMenu" label="Nom menu" type="text" variant="outlined" />
+                        </div>
+                        <div className="form-group mt-4 ">
                             <FormControl fullWidth>
                                 <InputLabel id="entree-label">Entrée</InputLabel>
                                 <Select labelId="entree-label" id="select-entree" name='entree' label="Entree">
@@ -52,6 +82,7 @@ export default function OrderForm() {
                             <FormControl fullWidth>
                                 <InputLabel id="plat-label">Plat</InputLabel>
                                 <Select labelId="plat-label" id="select-plat" name="" label="Plat">
+
                                     <MenuItem value="Salade césar">Salade césar</MenuItem>
                                     <MenuItem value="Oeuf mimosa">Oeuf mimosa</MenuItem>
                                     <MenuItem value="Rielletes de thon">Rielletes de thon</MenuItem>
@@ -61,8 +92,8 @@ export default function OrderForm() {
                         </div>
                         <div className="form-group mt-4 ">
                             <FormControl fullWidth>
-                                <InputLabel id="dessert-label">Entrée</InputLabel>
-                                <Select labelId="dessert-label" id="select-dessert" name="" label="Dessert">
+                                <InputLabel id="dessert-label">Dessert</InputLabel>
+                                <Select labelId="dessert-label" id="select-dessert" name="dessert" label="Dessert">
                                     <MenuItem value="Salade césar">Salade césar</MenuItem>
                                     <MenuItem value="Oeuf mimosa">Oeuf mimosa</MenuItem>
                                     <MenuItem value="Rielletes de thon">Rielletes de thon</MenuItem>

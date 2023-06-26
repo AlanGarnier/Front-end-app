@@ -5,27 +5,37 @@ import { TextField } from "formik-mui";
 import { H1, H2, Container, AuthForm, Span, RelativeParentContainer } from "./styles";
 import "./style.css";
 import * as Yup from "yup";
-// import { signup } from "../../../services/auth";
+import {signup} from "../../services/auth/singup.service";
 
 const registerSchema = Yup.object().shape({
 
+    firstName: Yup.string()
+        .required('Champ requis'),
+    lastName: Yup.string()
+        .required('Champ requis'),
+    phoneNumber: Yup.number()
+        .min(10,'Le mot de passe doit contenir 10 caractères')
+        .max(10,'Le mot de passe doit contenir 10 caractères')
+        .required('Champ requis'),
     email: Yup.string()
         .email('Adresse email invalide')
         .required('Champ requis'),
     password: Yup.string()
         .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
         .required('Champ requis'),
-
+    confirmPassword: Yup.string()
+        .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
+        .required('Champ requis'),
 });
 
 
 const registerForm = () => {
     return (
         <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: "", password: "", firstName: "", lastName: "", phoneNumber: "", confirmPassword: "" }}
             validationSchema={registerSchema}
             onSubmit={(values, { resetForm }) => {
-                // signup(values.email, values.password);
+                 signup(values.email, values.password, values.firstName, values.lastName, values.phoneNumber, values.confirmPassword);
                 resetForm();
             }}>
             <Container>
@@ -37,9 +47,42 @@ const registerForm = () => {
                             <div className="login-form">
                                 <RelativeParentContainer>
                                     <Field
+                                        name="firstName"
+                                        type="text"
+                                        placeholder="FirstName"
+                                        className="custom_field"
+                                        component={TextField}
+                                        required
+                                        fullWidth
+                                    />
+                                </RelativeParentContainer>
+                                <RelativeParentContainer>
+                                    <Field
+                                        name="lastName"
+                                        type="text"
+                                        placeholder="LastName"
+                                        className="custom_field"
+                                        component={TextField}
+                                        required
+                                        fullWidth
+                                    />
+                                </RelativeParentContainer>
+                                <RelativeParentContainer>
+                                    <Field
                                         name="email"
                                         type="text"
-                                        label="Email"
+                                        placeholder="Email"
+                                        className="custom_field"
+                                        component={TextField}
+                                        required
+                                        fullWidth
+                                    />
+                                </RelativeParentContainer>
+                                <RelativeParentContainer>
+                                    <Field
+                                        name="phoneNumber"
+                                        type="text"
+                                        placeholder="PhoneNumber"
                                         className="custom_field"
                                         component={TextField}
                                         required
@@ -51,7 +94,19 @@ const registerForm = () => {
                                     <Field
                                         name="password"
                                         type="password"
-                                        label="Mot de passe"
+                                        placeholder="Mot de passe"
+                                        className="custom_field"
+                                        component={TextField}
+                                        required
+                                        fullWidth
+                                    />
+                                </RelativeParentContainer>
+
+                                <RelativeParentContainer className="mt3">
+                                    <Field
+                                        name="confirmPassword"
+                                        type="password"
+                                        placeholder="Confirmer mot de passe"
                                         className="custom_field"
                                         component={TextField}
                                         required

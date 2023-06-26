@@ -23,8 +23,9 @@ import {useEffect} from "react";
 //import Chart from './Chart';
 //import Deposits from './Deposits';
 //import Orders from './Orders';
+import {getOrders} from "../../services/command.service";
 
-import MenuForm from "./admin/menuForm.component";
+import CagnotteForm from "./admin/editCagnotteForm.component";
 import OrderForm from "../order.component";
 
 function Copyright(props) {
@@ -98,18 +99,59 @@ export default function DashboardAdmin(effect, deps) {
     };
 
     const location = useLocation();
-    console.log(location.pathname);
+    //console.log(location.pathname);
 
+    // Composants basiques
     let content;
-
+    // Composants des commandes
+    let ordersCard;
+    // Attribution des composants dynamiquement
     if (location.pathname === '/dashboard/admin/order')
     {
         content = OrderForm();
     }
     else if (location.pathname === '/dashboard/admin')
     {
-        content = MenuForm();
+        content = CagnotteForm();
     }
+    else if(location.pathname === '/dashboard/')
+    {
+
+    }
+
+    let card;
+    // Afficher du contenu de type formulaire
+    if (content)
+    {
+        card = <Container  sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacin={2}>
+                <Grid item xs={5} md={5} lg={5}>
+                    <Paper sx={{
+                        p: 2,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        //flexDirection: 'column',
+                        //height: 240,
+                    }}>
+                        { content }
+                    </Paper>
+
+                </Grid>
+            </Grid>
+        </Container>;
+    }
+
+    //let ordersCard;
+   /* if(orders)
+    {
+        ordersCard = <Grid item xs={12}>
+                             <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                                 {orders}
+                             </Paper>
+                         </Grid>;
+    }
+    */
+
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -179,6 +221,10 @@ export default function DashboardAdmin(effect, deps) {
                 >
                     <Toolbar />
 
+
+                    {card}
+
+{/*
                     <Container  sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacin={2}>
                             <Grid item xs={5} md={5} lg={5}>
@@ -195,6 +241,8 @@ export default function DashboardAdmin(effect, deps) {
                             </Grid>
                         </Grid>
                     </Container>
+*/}
+
                     {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
                              Chart

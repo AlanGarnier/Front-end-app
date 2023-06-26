@@ -24,8 +24,6 @@ import {useEffect} from "react";
 //import Deposits from './Deposits';
 //import Orders from './Orders';
 
-import MenuForm from "./admin/menuForm.component";
-import OrderForm from "../order.component";
 
 function Copyright(props) {
     return (
@@ -108,7 +106,7 @@ export default function Dashboard(effect, deps) {
     }
     else if (location.pathname === '/dashboard/')
     {
-        content = MenuForm();
+        content = CagnotteForm();
     }
 
 

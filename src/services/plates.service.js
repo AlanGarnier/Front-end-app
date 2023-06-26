@@ -1,29 +1,47 @@
-import http from "../http-common";
+import axios from "axios";
+import {apiUrl} from "../config";
 
-class PlateDataService {
-    getAll() {
-        return http.get("/plates");
+// url entree
+const urlEntree = apiUrl + 'plate/entree';
+// url plat
+const urlPlat = apiUrl + 'plate/plat';
+// url dessert
+const urlDessert = apiUrl + 'plate/dessert';
+
+const entree = async () => {
+    try{
+        return await axios.get(`${urlEntree}`)
+            .then(response => {
+                return response.data;
+            })
     }
-
-    get(id) {
-        return http.get(`/plate/${id}`);
+    catch (error) {
+        return error;
     }
+};
 
-    create(data) {
-        return http.post("/plates", data);
+const plat = async () => {
+    try{
+        return await axios.get(`${urlPlat}`)
+            .then(response => {
+                return response.data;
+            })
     }
-
-    update(id, data) {
-        return http.put(`/plate/${id}`, data);
+    catch (error) {
+        return error
     }
+};
 
-    delete(id) {
-        return http.delete(`/plate/${id}`);
+const dessert = async () => {
+    try{
+        return await axios.get(`${urlDessert}`)
+            .then(response => {
+                return response.data;
+            })
     }
-
-    findById(id) {
-        return http.get(`/plates?id=${id}`);
+    catch (error) {
+        return error
     }
-}
+};
 
-export default new PlateDataService();
+export { entree, plat, dessert };

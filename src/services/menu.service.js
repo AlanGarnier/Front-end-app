@@ -1,29 +1,18 @@
-import http from "../http-common";
+import axios from 'axios';
+import {apiUrl} from "../config";
 
-class MenuDataService {
-    getAll() {
-        return http.get("/menus");
+// Créer un Menu
+const setMenu = (titleMenu, entree, plat, dessert)  => {
+    try{
+        return axios.post(`${apiUrl}add`, {titleMenu, entree, plat, dessert})
+            .then( response => {
+                window.location.href = "/dashboard";
+            })
     }
-
-    get(id) {
-        return http.get(`/menu/${id}`);
+    catch (error) {
+        console.log(error);
     }
+};
 
-    create(data) {
-        return http.post("/menus", data);
-    }
 
-    update(id, data) {
-        return http.put(`/menu/${id}`, data);
-    }
-
-    delete(id) {
-        return http.delete(`/menu/${id}`);
-    }
-
-    findById(id) {
-        return http.get(`/menus?id=${id}`);
-    }
-}
-
-export default new MenuDataService();
+export { setMenu };

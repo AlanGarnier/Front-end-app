@@ -1,29 +1,19 @@
-import http from "../http-common";
+import axios from "axios";
+import {apiUrl} from "../config";
 
-class UserDataService {
-    getAll() {
-        return http.get("/users");
+
+// Récupération de la liste des utilisateurs
+const users = async () => {
+    try {
+        return await axios.get(`${apiUrl}users`)
+            .then(response => {
+                return response.data;
+            })
     }
-
-    get(id) {
-        return http.get(`/user/${id}`);
-    }
-
-    create(data) {
-        return http.post("/users", data);
-    }
-
-    update(id, data) {
-        return http.put(`/user/${id}`, data);
-    }
-
-    delete(id) {
-        return http.delete(`/user/${id}`);
-    }
-
-    findById(id) {
-        return http.get(`/users?id=${id}`);
+    catch (error) {
+        return error;
     }
 }
 
-export default new UserDataService();
+
+export { users }

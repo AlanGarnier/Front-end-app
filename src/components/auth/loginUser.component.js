@@ -34,9 +34,9 @@ const loginForm = () => {
               <div className="form-container">
                 <div className="login-form">
                   <RelativeParentContainer>
-                    <InputLabel htmlFor="login">Login</InputLabel>
+                    {/*<InputLabel htmlFor="login">Login</InputLabel>*/}
                     <Field
-                        placeholder="test"
+                        // placeholder="test"
                         name="login"
                         type="text"
                         label="Login"

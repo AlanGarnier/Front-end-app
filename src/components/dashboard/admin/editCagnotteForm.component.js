@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik'
 import {editAmount} from "../../../services/procurement.service";
+import {users} from "../../../services/users.service";
 
 
 
@@ -19,7 +20,16 @@ const editCagnotteSchema = Yup.object().shape({
         .required('Veuillez sélectionner un utilisateur'),
 })
 
-export default function MenuForm() {
+export default function CagnotteForm() {
+
+    users()
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
 
     return(
         <React.Fragment>

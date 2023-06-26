@@ -11,6 +11,8 @@ import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import SyncAlt from "@mui/icons-material/SyncAlt";
 import MenuBook from "@mui/icons-material/MenuBook";
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import BadgeIcon from '@mui/icons-material/Badge';
 
 export const mainListItems = (
     <React.Fragment>
@@ -28,7 +30,7 @@ export const mainListItems = (
         </ListItemButton>
         <ListItemButton href="">
             <ListItemIcon>
-                <PeopleIcon />
+                <BadgeIcon />
             </ListItemIcon>
             <ListItemText primary="Mes infos" />
         </ListItemButton>
@@ -51,7 +53,7 @@ export const adminListItems = (
     <React.Fragment>
         <ListItemButton>
             <ListItemIcon>
-                <AssignmentIcon />
+                <BadgeIcon />
             </ListItemIcon>
             <ListItemText primary="Mes informations" />
         </ListItemButton>
@@ -69,7 +71,7 @@ export const adminListItems = (
         </ListItemButton>
         <ListItemButton>
             <ListItemIcon>
-                <AssignmentIcon />
+                <RestaurantMenuIcon />
             </ListItemIcon>
             <ListItemText primary="Les plats" />
         </ListItemButton>
